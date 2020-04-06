@@ -107,6 +107,7 @@ let keyEventFunctions = {
             textarea.selectionEnd = textarea.selectionStart;
         }
         if (arrowType === 'ArrowDown') {
+
         }
         if (arrowType === 'ArrowUp') {
         }
@@ -158,7 +159,7 @@ let mainInputFunctions = {
                     }
                 }
 
-                else if (pressedKey.dataset.key.indexOf('Arrow') !== -1) {
+                else if (pressedKey.dataset.key.indexOf('Arrow') !== -1 && pressedKey.dataset.key.indexOf('Up') === -1 && pressedKey.dataset.key.indexOf('Down') === -1) {
 
                     keyEventFunctions.arrowsAction(pressedKey.dataset.key);
                 }
@@ -205,7 +206,7 @@ let mainInputFunctions = {
             else if (event.code === 'CapsLock') {
                 makeUpperCaseKeys(pressedKey);
             }
-            else if (event.code.indexOf('Arrow') !== -1) {
+            else if (event.code.indexOf('Arrow') !== -1 && event.code.indexOf('Up') === -1 && event.code.indexOf('Down') === -1) {
                 keyEventFunctions.arrowsAction(pressedKey.dataset.key);
             }
             else if (event.code === 'Enter') {
@@ -279,6 +280,7 @@ class Keyboard {
         localStorage.setItem('capsSwitcher', 0);
         this.langSwitcher = +localStorage.getItem('langSwitcher');
         this.shiftSwitcher = 0;
+        this.keyBoardInfo = 'hotkeys: Switch language - ctrl + alt. Copy text - ctrl + c. Paste text - ctrl + v. Cut text - ctrl + x.'
         this.keysValue = {
             Backquote: ['`', '~'],
             Digit1: ['1', '!'],
@@ -352,6 +354,9 @@ class Keyboard {
         let counter = 0;
         let container = document.createElement('div');
         let keyRaw = document.createElement('div');
+        let description = document.createElement('div')
+        description.className = 'description';
+        description.innerHTML = this.keyBoardInfo;
         keyRaw.className = 'raw flex';
         container.className = 'container flex';
         if (this.langSwitcher === null || this.langSwitcher === undefined) {
@@ -360,7 +365,7 @@ class Keyboard {
         if (this.shiftSwitcher === null || this.shiftSwitcher === undefined) {
             this.shiftSwitcher = 0;
         }
-        for (let prop in  this.keysValue) {
+        for (let prop in this.keysValue) {
             if (!this.keysValue.hasOwnProperty(prop)) continue;
             let div = document.createElement('div');
             div.className = 'key';
@@ -422,6 +427,7 @@ class Keyboard {
         textarea.setAttribute('type', 'text');
         textarea.id = 'textarea';
         container.prepend(textarea);
+        container.prepend(description);
         fragment.append(container);
         document.body.append(fragment);
     };
