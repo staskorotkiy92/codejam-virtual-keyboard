@@ -44,7 +44,7 @@
 
 .textarea {
     height: 200px;
-    margin:50px 0 100px 0;
+    margin:20px 0 100px 0;
 }
 
 .pressedKey {
@@ -55,4 +55,15 @@
 .pressedSpecialKey {
     background: red;
     transform: scale(1.05);
+}
+
+.description {
+    font-size: 20px;
+    color:blueviolet;
+    font-weight: bold;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: justify;
+    width: 500px;
+    padding-top: 15px;
+    margin: 0 auto;
 }
