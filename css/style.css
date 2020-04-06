@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width:800px;
+    margin:0 auto;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.raw {
+    height: 52px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.key {
+    flex-basis: 48px;
+
+    border: solid black 1px;
+    background: gray;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.bigKey {
+    flex-basis:100px;
+}
+
+.keySpace {
+ flex-basis: 320px;
+}
+
+.textarea {
+    height: 200px;
+    margin:50px 0 100px 0;
+}
+
+.pressedKey {
+    background: red;
+    transform: scale(0.9);
+    }
+
+.pressedSpecialKey {
+    background: red;
+    transform: scale(1.05);
+}
