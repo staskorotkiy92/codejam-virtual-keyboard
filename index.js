@@ -145,6 +145,7 @@ let mainInputFunctions = {
         document.addEventListener('mousedown', function (event) {
             if (event.which === 1) {
                 pressedKey = event.target.closest('.key');
+                if(!pressedKey) return;
                 pressedKey.classList.add('pressedKey');
                 if (pressedKey.dataset.key === 'Backspace') {
                     keyEventFunctions.backspaceAction();
@@ -185,6 +186,7 @@ let mainInputFunctions = {
                 }
 
                 document.addEventListener('mouseup', function (event) {
+                    if(!pressedKey) return;
                     document.getElementById('textarea').focus();
                     pressedKey.classList.remove('pressedKey');
                 });
@@ -192,8 +194,10 @@ let mainInputFunctions = {
         });
 
         document.addEventListener('keydown', function (event) {
+            
             isPressed[event.code] = true;
             pressedKey = document.querySelector(`.${event.code}`);
+            if(!pressedKey) return;
             pressedKey.classList.add('pressedKey');
             textarea.focus();
             event.preventDefault();
@@ -234,6 +238,7 @@ let mainInputFunctions = {
         });
 
         document.addEventListener('keyup', function (event) {
+            if(!pressedKey) return;
             isPressed[event.code] = false;
             if (event.code.indexOf('Shift') !== -1) {
                 makeUpperCaseKeys(pressedKey);
